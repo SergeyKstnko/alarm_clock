@@ -15,7 +15,7 @@ url = [url1, url2, url3, url4]
 
 
 def alarm(hr, mn, per):
-	'''This function take in time for the alarm to go off. And opens the url when the
+	'''This function takes in time for the alarm to go off. And opens the url when the
 	time is for the alarm is equal to the current time. Has no return
 	hr 	int 	hour
 	mn 	int 	minute
