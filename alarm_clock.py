@@ -15,7 +15,7 @@ url = [url1, url2, url3, url4]
 
 
 def alarm(hr, mn, per):
-	'''This function take in time for the alarm to go off. And opens the url when the
+	'''This function takes in time for the alarm to go off. And opens the url when the
 	time is for the alarm is equal to the current time. Has no return
 	hr 	int 	hour
 	mn 	int 	minute
@@ -34,10 +34,15 @@ def alarm(hr, mn, per):
 		print("Time is: %s:%s %s. Alarm was set for: %s:%s %s" % (current_hr, time.localtime().tm_min, current_per, hr, mn, per))			
 		time.sleep(15)
 
-if __name__ == "__main__":
+def command_line(arguments):
+	'''This function uses argparse to provide a user friendly user interface'''
 	parser = argparse.ArgumentParser(description='Set your alarm clock.')
 	parser.add_argument('--h', '--hour', type = int, choices = range(1,13), required = True, help ='CHoo')
 	parser.add_argument('--m', '--minute', type = int, choices = range(0,61), required = True, help ='CHoo')
 	parser.add_argument('--p', '--period', choices = ['AM', 'PM', 'am', 'pm'], required = True)
-	args = vars(parser.parse_args())
+	return vars(parser.parse_args(arguments))
+
+if __name__ == "__main__":
+	print(sys.argv)
+	args = command_line(sys.argv[1:])
 	alarm(args['h'], args['m'], args['p'])
