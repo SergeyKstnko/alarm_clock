@@ -6,6 +6,8 @@
 
 import sys, time, argparse
 import webbrowser, random
+#from datetime 
+import datetime
 
 url1 = "https://www.youtube.com/watch?v=DclzQCVIIrM&index=2&list=PLMMHnZBscWoE3HbPgeALPO1rCJsBa_QVS"
 url2 = "https://www.youtube.com/watch?v=g-jwWYX7Jlo&index=14&list=PLMMHnZBscWoE3HbPgeALPO1rCJsBa_QVS"
@@ -20,18 +22,18 @@ def alarm(hr, mn, per):
 	hr 	int 	hour
 	mn 	int 	minute
 	per str 	period (AM/PM)'''
-	if time.localtime().tm_hour > 12:
-		current_hr = time.localtime().tm_hour - 12
-		current_per = 'pm'
-	else: current_per = 'am'
+	if per == 'PM' or per == 'pm':
+		hr += 12
+	alarm_time = datetime.time(hr, mn)
 	while True:
-		if current_hr == hr and time.localtime().tm_min == mn:
+		cur_time = datetime.time(time.localtime().tm_hour, time.localtime().tm_min)
+		if cur_time == alarm_time:
 			if __name__ == "__main__":
 				rand = random.randint(0,len(url)-1)
 				webbrowser.open(url[rand], new=2, autoraise = True)
-			print("Knock, Knock, Neo.")
+				print("Knock, Knock, Neo.")
 			break
-		print("Time is: %s:%s %s. Alarm was set for: %s:%s %s" % (current_hr, time.localtime().tm_min, current_per, hr, mn, per))			
+		print("Time is: %s. Alarm was set for: %s" % (cur_time.strftime("%I:%M %p"), alarm_time.strftime("%I:%M %p")))			
 		time.sleep(15)
 
 def command_line(arguments):
