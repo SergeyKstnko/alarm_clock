@@ -25,6 +25,8 @@ def alarm(hr, mn, per):
 	if per == 'PM' or per == 'pm':
 		hr += 12
 	alarm_time = datetime.time(hr, mn)
+	print("Alarm was set for %s." % alarm_time.strftime("%I:%M %p"))
+	time.sleep(60 - time.localtime().tm_sec)
 	while True:
 		cur_time = datetime.time(time.localtime().tm_hour, time.localtime().tm_min)
 		if cur_time == alarm_time:
@@ -34,7 +36,7 @@ def alarm(hr, mn, per):
 				print("Knock, Knock, Neo.")
 			break
 		print("Time is: %s. Alarm was set for: %s" % (cur_time.strftime("%I:%M %p"), alarm_time.strftime("%I:%M %p")))			
-		time.sleep(15)
+		time.sleep(60)
 
 def command_line(arguments):
 	'''This function uses argparse to provide a user friendly user interface'''
@@ -45,6 +47,5 @@ def command_line(arguments):
 	return vars(parser.parse_args(arguments))
 
 if __name__ == "__main__":
-	print(sys.argv)
 	args = command_line(sys.argv[1:])
 	alarm(args['h'], args['m'], args['p'])
