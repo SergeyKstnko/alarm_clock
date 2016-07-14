@@ -25,8 +25,9 @@ def alarm(hr, mn, per):
 	if per == 'PM' or per == 'pm':
 		hr += 12
 	alarm_time = datetime.time(hr, mn)
-	print("Alarm was set for %s." % alarm_time.strftime("%I:%M %p"))
-	time.sleep(60 - time.localtime().tm_sec)
+	if __name__ == "__main__":
+		print("Alarm was set for %s." % alarm_time.strftime("%I:%M %p"))
+		time.sleep(60 - time.localtime().tm_sec)
 	while True:
 		cur_time = datetime.time(time.localtime().tm_hour, time.localtime().tm_min)
 		if cur_time == alarm_time:
