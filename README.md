@@ -8,4 +8,4 @@ Written in Python 3. My goal was to pracrice:
 
 1. creating user friendly command line interfaces by using argparse;
 2. writing test file using unittest;
-3. manipulating datatime object;
+3. manipulating datatime object.
